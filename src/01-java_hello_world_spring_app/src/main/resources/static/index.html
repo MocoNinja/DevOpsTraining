@@ -5,6 +5,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p>Get your greeting <a href="/greeting">here</a></p>
+	<input id="name" name="name" type="text" value="" placeholder="Insert your name: " />
+    <p>Get your greeting <a id="link" href="/greeting">here</a></p>
+    <script type="text/javascript">
+   		const default_url = "/greeting";
+    	document.getElementById('name').addEventListener("change", function(){
+    		let name = this.value;
+    		let linkURL = document.getElementById('link').href;
+    		console.log("Before: " + linkURL);
+    		if (name != ""){
+    			linkURL += "?name=";
+    			linkURL += name.trim();
+    		} else {
+    			linkURL = default_url;
+    		}
+    		document.getElementById('link').href = linkURL;
+    	});
+    </script>
 </body>
 </html>
