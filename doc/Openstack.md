@@ -15,8 +15,11 @@ El primer paso fue loguearnos en el [portal](https://portal.openstack.helix.int/
 Una vez dentro, el primer paso consistió en crear la **red** y la  **subred** que albergarían nuestras máquinas virtuales.
 
 La forma de crearlas es muy intuitiva y se puede observar en las siguientes imágenes:
+
 ![red](./caps/os-01.png)
+
 ![subred](./caps/os-02.png)
+
 ![conf](./caps/os-03.png)
 
 ### Creación de la máquina virtual
@@ -33,9 +36,11 @@ Así mismo, no hay que olvidar que debido a que la forma de acceso a la máquina
 
 Su presentación en la interfaz se observa en las siguientes imágenes: 
 
-![1](./caps/in-01.png)
-![2](./caps/in-02.png)
-![3](./caps/in-03.png)
+![instance 1](./caps/in-01.png)
+
+![instance 2](./caps/in-02.png)
+
+![instance 3](./caps/in-03.png)
 
 ### Enrutado y conexión
 

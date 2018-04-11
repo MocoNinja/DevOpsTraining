@@ -12,7 +12,7 @@ Aunque nuestro enfoque será en *Docker*, Vagrant es otra tecnología muy popula
 
 Una vez instalada, se accede a ella mediante el comando ```vagrant```
 
-![vgt](./caps/vgt-1.png)
+![cmd app](./caps/vgt-1.png)
 
 ### VagrantFile
 
