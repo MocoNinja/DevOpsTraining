@@ -39,6 +39,11 @@ echo "== Setting Up Application =="
 echo "============================"
 
 echo "Sedding host into java..."
+if [ -f src/main/java/app/bd/MongoConfig.java ]; then
+	rm src/main/java/app/bd/MongoConfig.java
+fi
+
+cp src/main/java/app/bd/MongoConfig.skeleton src/main/java/app/bd/MongoConfig.java
 sed -i "s|127.0.0.1|$MONGO_CONTAINER|g" src/main/java/app/bd/MongoConfig.java
 
 echo "Building and packaging war file..."
