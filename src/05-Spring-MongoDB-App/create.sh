@@ -1,15 +1,21 @@
 #! /bin/bash
 
-DBPATH='/home/centos/docker/persistence/mongodb/spring-sample-app-customete'
-DB_TABLE_NAME='test'
-NETWORKNAME='net1'
-PORT=45000
+DBPATH='/home/centos/docker/persistence/mongodb/spring-guestbook'
+DB_TABLE_NAME='guestbook-app'
+NETWORKNAME='guestbook-network'
+PORT="40008"
 JAVA_IMAGE='spring-guestbook'
 JAVA_CONTAINER='spring-guestbook'
 MONGO_CONTAINER='spring-mongo'
 
 echo "============================"
 echo "= Stating Spring Mongo APP ="
+echo "============================"
+
+echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+
+echo "============================"
+echo "==== Setting Up Database ==="
 echo "============================"
 
 echo "Creating a network..."
@@ -27,6 +33,22 @@ fi
 echo "Starting a mongo instance..."
 echo "(USING OFFICIAL IMAGE)"
 sudo docker run --name $MONGO_CONTAINER --network=$NETWORKNAME -v $DBPATH:/data/db -d mongo
+
+echo "============================"
+echo "== Setting Up Application =="
+echo "============================"
+
+echo "Sedding host into java..."
+sed -i "s|127.0.0.1|$MONGO_CONTAINER|g" src/main/java/app/bd/MongoConfig.java
+
+echo "Building and packaging war file..."
+mvn clean package
+
+echo "Serving war..."
+cp target/mongodb-helloworld-0.0.1-SNAPSHOT.war ./app.war
+
+echo "Cleaning..."
+mvn clean
 
 echo "Writing custom Dockerfile..."
 if [ -f Dockerfile ]; then
