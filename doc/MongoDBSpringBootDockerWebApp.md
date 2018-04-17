@@ -25,7 +25,7 @@ Estos parámetros de conexión pueden configurarse dentro de la aplicación. Cre
 Con estas configuraciones, se conectan la aplicación y la base de datos. A veces puede ser interesante acceder a a la *shell* de la base de datos. Con la base de datos *dockerizada*, podemos usar comandos de Docker para interactuar con el contenedor. En concreto usamos el comando [exec](https://docs.docker.com/engine/reference/commandline/container_exec/). De forma resumida, ejecutamos un:
 
 ```docker
-docker exec contenedor mongo
+docker exec -it contenedor mongo
 ```
 
 Con este comando nos loguearemos a la base de datos y tras un ```exit```, saldremos de la shell, no habiendo parado el contenedor en ningún momento.
