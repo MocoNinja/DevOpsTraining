@@ -63,7 +63,7 @@ fi
 
 /bin/cat <<EOM >Dockerfile
 FROM openjdk:8-jdk
-ADD app.war /app.war
+COPY app.war /app.war
 EXPOSE 8080
 ENTRYPOINT ["java", "-Dspring.data.mongodb.uri=mongodb://$MONGO_CONTAINER/$DB_TABLE_NAME", "-jar","/app.war"]
 EOM
