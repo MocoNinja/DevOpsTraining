@@ -45,6 +45,7 @@ fi
 
 cp src/main/java/app/bd/MongoConfig.skeleton src/main/java/app/bd/MongoConfig.java
 sed -i "s|127.0.0.1|$MONGO_CONTAINER|g" src/main/java/app/bd/MongoConfig.java
+sed -i "s|mongospringjavitest|$DB_TABLE_NAME|g" src/main/java/app/bd/MongoConfig.java
 
 echo "Building and packaging war file..."
 mvn clean package
