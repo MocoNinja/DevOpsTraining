@@ -2,7 +2,7 @@
 
 DBPATH='/home/moconinja/docker/persistence/mongodb/spring-guestbook-compose'
 DB_TABLE_NAME='guestbook-app-compose'
-PORT="40009"
+PORT="40010"
 MONGO_CONTAINER='spring-mongo-compose'
 #NETWORKNAME='guestbook-network'
 #JAVA_IMAGE='spring-guestbook'
@@ -84,7 +84,7 @@ services:
 	app:
 		build: .
 		ports:
-			- 40010:8080
+			- $PORT:8080
 EOM
 
 echo "Switch tabs for spaces..."
