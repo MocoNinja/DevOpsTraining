@@ -3,7 +3,7 @@ services:
  spring-mongo-compose:
   image: mongo
   volumes:
-   - /home/moconinja/docker/persistence/mongodb/spring-guestbook-compose:/data/db
+   - /home/centos/docker/persistence/mongodb/spring-guestbook-compose:/data/db
  app:
   build: .
   ports:

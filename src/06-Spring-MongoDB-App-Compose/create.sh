@@ -1,6 +1,6 @@
 #! /bin/bash
 
-DBPATH='/home/moconinja/docker/persistence/mongodb/spring-guestbook-compose'
+DBPATH='/home/centos/docker/persistence/mongodb/spring-guestbook-compose'
 DB_TABLE_NAME='guestbook-app-compose'
 PORT="40010"
 MONGO_CONTAINER='spring-mongo-compose'
