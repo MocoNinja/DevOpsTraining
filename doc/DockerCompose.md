@@ -43,7 +43,9 @@ A continuación expongo mis dos documentos utilizados:
   6  spring-mongo-compose:
   7   image: mongo
   8   volumes:
-  9    - /home/centos/docker/persistence/mongodb/spring-guestbook-compose:/data/db
+  9    - /home/centos/docker/persistence/mongodb/
+            spring-guestbook-compose:/data/db
+ 10
 ```
 
 Puede verse que se crean dos servicios:
@@ -69,7 +71,9 @@ Notar que no es necesario crear ninguna red de forma manual, ya que docker-compo
  10  spring-mongo-compose-variation:
  11   image: mongo
  12   volumes:
- 13    - /home/centos/docker/persistence/mongodb/spring-guestbook-compose-variation:/data/db
+ 13    - /home/centos/docker/persistence/mongodb/
+            spring-guestbook-compose-variation:/data/db
+ 14
 ```
 
 Este archivo es análogo al anterior, con la salvedad de que en vez de usar un Dockerfile, usa una imagen ya hecha. Como se ha partido de una imagen oficial, se ha especificado otro volumen que contiene el código de la aplicación y un script para compilarlo y ejecutarlo con los parámetros adecuados. Notar la forma de especificar el *entrypoint* y *cmd* de la aplicación, muy similar a lo que haríamos en un Dockerfile.
