@@ -1,9 +1,10 @@
 #! /bin/bash
 
-DBPATH='/home/moconinja/docker/persistence/mongodb/spring-guestbook-compose'
+DBPATH='/home/centos/docker/persistence/mongodb/spring-guestbook-compose'
 DB_TABLE_NAME='guestbook-app-compose'
 PORT="40010"
 MONGO_CONTAINER='spring-mongo-compose'
+JAVA_CONTAINER='spring-guestbook-compose'
 #NETWORKNAME='guestbook-network'
 #JAVA_IMAGE='spring-guestbook'
 #JAVA_CONTAINER='spring-guestbook'
@@ -49,7 +50,7 @@ fi
 FROM openjdk:8-jdk
 COPY app.war /app.war
 EXPOSE 8080
-ENTRYPOINT ["java", "-Dspring.data.mongodb.uri=mongodb://$MONGO_CONTAINER/$DB_TABLE_NAME", "-jar","/app.war"]
+ENTRYPOINT ["java", "-Dspring.data.mongodb.uri=mongodb://$MONGO_CONTAINER/$DB_TABLE_NAME","-Djava.security.egd=file:/dev/./urandom", "-jar","/app.war"]
 EOM
 
 echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-="
@@ -77,14 +78,14 @@ fi
 /bin/cat <<EOM >docker-compose.yml
 version: '3'
 services:
+	$JAVA_CONTAINER:
+		build: .
+		ports:
+			- $PORT:8080
 	$MONGO_CONTAINER:
 		image: mongo
 		volumes:
 			- $DBPATH:/data/db
-	app:
-		build: .
-		ports:
-			- $PORT:8080
 EOM
 
 echo "Switch tabs for spaces..."
