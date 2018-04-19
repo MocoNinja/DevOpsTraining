@@ -1,2 +1,4 @@
-sudo docker-compose rm -f
-sudo docker-compose up --build -d
+#! /bin/bash
+sudo docker-composer down
+sudo docker-compose build --no-cache
+sudo docker-compose up
