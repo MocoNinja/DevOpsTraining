@@ -1,0 +1,63 @@
+body {
+	color: #ffffff;
+	background-color: #000000;
+	font-size: 18pt;
+}
+
+.form {
+	margin: auto;
+    text-align: center;
+	font-size: 20pt;
+    border: 3px solid green;
+	width: 75%;
+	margin-top: 75px;
+	background-color: #555555;
+	color:#8ae234;
+	border: 1px solid black;
+	border-radius: 7px;
+	padding: 20px;
+}
+
+header {
+	font-family: Arial;
+	background-color: #333333;
+	border: 2px dotted yellow;
+	text-align: center;
+}
+
+span.user {
+	color: cyan;
+	font-family: Times;
+	font-weight: bold;
+}
+
+footer {
+	font-size: 32pt;
+	background-color: yellow;
+	border: 5px solid cyan;
+	width: 25%;
+	position:absolute;
+	float:left;
+	bottom:0;
+	text-align: center;
+	color:yellow;
+}
+
+footer:hover {
+	background-color: cyan;
+}
+
+.ninja-form {
+	display: inline-block;
+}
+
+table.visitas {
+	border: 2px dotted cyan;
+	display: block;
+	float: left;
+	margin:auto;
+}
+
+tr.visitas:hover {
+	background-color: red;
+}
