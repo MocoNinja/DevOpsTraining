@@ -19,11 +19,27 @@ Es conveniente analizar el significado de estos parámetros:
 * ***exec mongo***: remplaza la *shell* por *mongo*
 * ***sh -c argumento***: fuerza a que sea *sh* lance *argumento* en vez del intérprete por defecto. Este ejemplo se ve mejor ejecutando por ejemplo: ```python -c 'print(2 + 2)```
 
+Así mismo es conveniente analizar el [Dockerfile](https://github.com/docker-library/mongo/blob/58bdba62b65b1d1e1ea5cbde54c1682f120e0676/3.0/Dockerfile) para ver que:
 
-Tambien es interesante conocer los comandos de MongoDB. Para ello, voy a usar los comandos ```man```:
+* El ***ENTRYPOINT*** de la imagen es un script llamado *docker-entrypoint.sh*. Bajo un rápida inspección de este script, parece gestionar los argumentos que se le pasan para ejecutar servicios de mongo de forma correcta, evitando problemas que puedan derivar de los argumentos
+* El ***CMD*** de la imagen es **mongod**, es decir, que por defecto la base de datos entra como **servidor**
+
+**Con esto podemos aprender que estos parámetros crean un contenedor de docker, que se borra el pararse, conectado a otro mongo y que remplaza la shell por el cliente de mongo con unos parámetros**.
+
+Tambien es interesante conocer los comandos de MongoDB. Para ello, voy a obtender información sobre ellos mediante ```man```:
 
 * ***mongod***:  Como se ve en el manual:
 
->mongod  is  the  primary  daemon process for the MongoDB system. It handles data requests, manages data access, and performs background management operations.
-
 Es decir, es el motor de la base de datos, y es la opción por defecto de la imagen de Mongo, como puede leerse en el [Dockerfile](https://github.com/docker-library/mongo/blob/58bdba62b65b1d1e1ea5cbde54c1682f120e0676/3.0/Dockerfile)
+
+* ***mongo***: Del manual:
+
+>mongo  is  an interactive JavaScript shell interface to MongoDB, which provides a powerful interface for systems administrators as well as a way for developers to test queries and operations directly with the database. mongo also provides a  fully functional  JavaScript  environment  for use with a MongoDB. This document addresses the basic invocation of the mongo shelland an overview of its usage.
+
+mongod  is  the  primary  daemon process for the MongoDB system. It handles data requests, manages data access, and performs background management operations.
+
+Recalcando el siguiente argumento:
+>***--host \<hostname>*** \
+\
+>Specifies the name of the host machine where the mongod or mongos  is  running.  If  this  is  not  specified,  mongo
+attempts to connect to a MongoDB process running on the localhost.
