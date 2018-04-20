@@ -35,7 +35,6 @@ Es decir, es el motor de la base de datos, y es la opción por defecto de la ima
 * ***mongo***: Del manual:
 
 >mongo  is  an interactive JavaScript shell interface to MongoDB, which provides a powerful interface for systems administrators as well as a way for developers to test queries and operations directly with the database. mongo also provides a  fully functional  JavaScript  environment  for use with a MongoDB. This document addresses the basic invocation of the mongo shelland an overview of its usage.
-
 mongod  is  the  primary  daemon process for the MongoDB system. It handles data requests, manages data access, and performs background management operations.
 
 Recalcando el siguiente argumento:
@@ -43,3 +42,5 @@ Recalcando el siguiente argumento:
 \
 >Specifies the name of the host machine where the mongod or mongos  is  running.  If  this  is  not  specified,  mongo
 attempts to connect to a MongoDB process running on the localhost.
+
+Es decir, es el **cliente** de mongo, ya sea de una base *local* o *remota*.
