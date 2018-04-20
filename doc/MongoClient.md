@@ -56,12 +56,9 @@ Finalmente al cerrar el cliente y volver a conectarse directamente a la shell de
 Los comandos utilizados han sido:
 
 * ```sudo docker network create mongored```: Para crear la red en la que estarán el servidor y el cliente
-
 * ```sudo docker run --rm --name=mongodb-test --network=mongored -d mongo```: Crea un contenedor servidor de Mongo *dettached*, **con el nombre mongodb-test** y en la red anteriormente creada
-
 * ```sudo docker run -it --network=mongored  --rm mongo sh -c 'exec mongo mongodb-test/test'```: Corre en modo *interactivo* un contenedor de mongo que en vez del servidor ejecuta el **cliente**. Notar que como argumento se le pasa la url de conexión en formato **nombredelContenedorServidor**/nombre de la base de datos
 
-\
 ![create](./caps/mongo-c-01.png)
 
 ![check&change](./caps/mongo-c-02.png)
