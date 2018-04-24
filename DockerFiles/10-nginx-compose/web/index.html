@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ratón mierder</title>
+    <style type="text/css">
+        body {
+            background-color: black;
+            color: lime;
+            font-family: 'FixedSys';
+            font-size: 25pt;
+        }
+        .circulitos {
+            display: block;
+            position: absolute;
+            background-color: yellow;
+            left: 25px;
+            top: 50px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.addEventListener("load", function() {
+           elementos = document.getElementsByTagName('section');
+           for (elemento = 0; elemento < elementos.length; elemento++) {
+								if (elementos[elemento].id == 'exception') {
+									continue;
+								}
+               	elementos[elemento].addEventListener("mousemove", function(e) {
+                x = e.x;
+                y = e.y;
+                document.getElementById('mousePos').innerText = x + ", " + y;
+                randomPosColor(x, y);
+            });
+            }
+        });
+
+        function randomPosColor(x, y) {
+            var circulitos = document.getElementsByClassName("circulitos");
+            for (i = 0; i < circulitos.length; i++) {
+                circulito = circulitos[i];
+                aleatorio = (Math.random() * 100 - 0.5) / 5 + "px";
+                circulito.style['width'] = aleatorio;
+                circulito.style['height'] = aleatorio;
+                offset = (Math.random() * 10);
+                posX = x - offset + "px";
+                posY = y - offset + "px";
+                circulito.style['left'] = posX;
+                circulito.style['top'] = posY;
+            }
+        }
+    </script>
+</head>
+<body style="cursor: none;">
+<header>
+    <h1>Hello, World!</h1>
+    <hr />
+</header>
+<section id="main">
+    <article id="shit">
+        <h2>boi</h2>
+        <hr />
+        <p>Wadadadabubbub</p>
+    </article>
+</section>
+<section id="aux">
+    <article id="shit">
+        <h2>Not Cool</h2>
+        <hr />
+        <p>Not worthy of c00l h4x0r mouse</p>
+        <div id="mousePos"></div>
+    </article>
+</section>
+<section id="pr0gfx">
+    <div class="circulitos" id="circulito1"></div>
+    <div class="circulitos" id="circulito2"></div>
+    <div class="circulitos" id="circulito3"></div>
+    <div class="circulitos" id="circulito4"></div>
+    <div class="circulitos" id="circulito5"></div>
+    <div class="circulitos" id="circulito6"></div>
+    <div class="circulitos" id="circulito7"></div>
+    <div class="circulitos" id="circulito8"></div>
+    <div class="circulitos" id="circulito9"></div>
+    <div class="circulitos" id="circulito10"></div>
+</section>
+</body>
+</html>
+

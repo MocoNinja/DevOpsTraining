@@ -1,0 +1,17 @@
+body
+{
+    background-color: #222222;
+    color: #00ff00;
+    padding: 20px;
+    margin: auto;
+    float: left;
+    text-align: center;
+    border: 10px dotted darkviolet;
+}
+
+.ninja
+{
+    display: none;
+    color: #9d02ff;
+    border: 2px dotted yellow;
+}
