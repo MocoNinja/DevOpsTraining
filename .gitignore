@@ -1,2 +1,4 @@
 *.swp
 *.pem
+*.code-workspace
+extras/
