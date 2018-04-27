@@ -20,7 +20,10 @@ def __buildScript(name,proxy=True):
     script.write(SHEBANG_BASH + "\n")
     command = "docker build"
     if proxy:
-        command += "--build-arg http_proxy=" + os.environ['PROXY'] + " --build-arg http_proxy=" + os.environ['PROXY']
+        try:
+            command += "--build-arg http_proxy=" + os.environ['PROXY'] + " --build-arg http_proxy=" + os.environ['PROXY']
+        except:
+            print("Error: PROXY is not configured as and environmental variable")
     command += " -t " + name
     script.write(command)
     script.close()
