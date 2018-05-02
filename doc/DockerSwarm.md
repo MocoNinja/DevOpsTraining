@@ -22,6 +22,9 @@ Inicialmente seguimos el [tutorial de Docker Swarm](https://docs.docker.com/engi
 * **Modificar el estado de un nodo:**: ```sudo docker node update --availability ESTADO NODO```
   * active: activo, el nodo se usa con regularidad
   * drain: inactivo, se especifica que los contenedores **del swarm** se muevan a otros nodos y no se alocan en él nuevos
+* **Modificar el rol de un nodo**:
+  * De worker a manager --> ```sudo docker node promote NODO```
+  * De manager a worker --> ```sudo docker node demote NODO```
 
 ### Gestión de servicios
 
