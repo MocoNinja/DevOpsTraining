@@ -7,7 +7,7 @@ We are using docker +1.13, so we are learning to work with the swarm and stack m
 **tl;dr**: run with:
 
 ```shell
-docker deploy --compose-file docker-compose.yml VOTE
+sudo docker stack deploy --compose-file docker-compose.yml VOTE
 ```
 
 ## Info
