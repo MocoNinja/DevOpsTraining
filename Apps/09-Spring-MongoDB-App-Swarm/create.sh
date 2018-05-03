@@ -84,7 +84,6 @@ services:
 		deploy:
 			mode: replicated
 			replicas: 4
-			labels: [APP=APP]
 			placement:
 				constraints: [node.role == worker]
 	$MONGO_CONTAINER:
@@ -94,24 +93,23 @@ services:
 		deploy:
 			mode: replicated
 			replicas: 1
-			labels: [APP=DATABASE]
 			placement:
 				constraints: [node.role == manager]
 	visualizer:
-	image: dockersamples/visualizer:stable
-	ports:
-		- "8080:8080"
-	volumes:
-		- "/var/run/docker.sock:/var/run/docker.sock"
-	deploy:
-		mode: replicated
-		replicas: 1
-		labels: [APP=MONITOR]
-	placement:
-			constraints: [node.role == manager]
+		image: dockersamples/visualizer:stable
+		ports:
+			- 8080:8080
+		volumes:
+			- "/var/run/docker.sock:/var/run/docker.sock"
+		deploy:
+			mode: replicated
+			replicas: 1
+			labels: [APP=MONITOR]
+			placement:
+				constraints: [node.role == manager]
 
 networks:
-	$NETWORK_NAME
+	$NETWORK_NAME:
 
 EOM
 
