@@ -7,6 +7,7 @@ MONGO_CONTAINER='spring-mongo-stack'
 JAVA_CONTAINER='spring-guestbook-stack'
 STACK_NAME='guestbook-stack'
 NETWORK_NAME='gestbook-net'
+APP_IMAGE='spring-guestbook'
 
 echo "============================"
 echo "= Stating Spring Mongo APP ="
@@ -52,6 +53,9 @@ EXPOSE 8080
 ENTRYPOINT ["java", "-Dspring.data.mongodb.uri=mongodb://$MONGO_CONTAINER/$DB_TABLE_NAME","-Djava.security.egd=file:/dev/./urandom", "-jar","/app.war"]
 EOM
 
+echo "Building the Docker Image..."
+sudo docker build -t $APP_IMAGE .
+
 echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-="
 
 echo "============================"
@@ -78,7 +82,7 @@ fi
 version: '3'
 services:
 	$JAVA_CONTAINER:
-		build: .
+		image: $APP_IMAGE
 		ports:
 			- $PORT:8080
 		deploy:
@@ -98,7 +102,7 @@ services:
 	visualizer:
 		image: dockersamples/visualizer:stable
 		ports:
-			- 8080:8080
+			- 8081:8080
 		volumes:
 			- "/var/run/docker.sock:/var/run/docker.sock"
 		deploy:
