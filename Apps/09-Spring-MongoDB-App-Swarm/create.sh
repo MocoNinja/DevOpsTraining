@@ -6,6 +6,7 @@ PORT="8080"
 MONGO_CONTAINER='spring-mongo-stack'
 JAVA_CONTAINER='spring-guestbook-stack'
 STACK_NAME='guestbook-stack'
+NETWORK_NAME='gestbook-net'
 
 echo "============================"
 echo "= Stating Spring Mongo APP ="
@@ -80,10 +81,37 @@ services:
 		build: .
 		ports:
 			- $PORT:8080
+		deploy:
+			mode: replicated
+			replicas: 4
+			labels: [APP=APP]
+			placement:
+				constraints: [node.role == worker]
 	$MONGO_CONTAINER:
 		image: mongo
 		volumes:
 			- $DBPATH:/data/db
+		deploy:
+			mode: replicated
+			replicas: 1
+			labels: [APP=DATABASE]
+			placement:
+				constraints: [node.role == manager]
+	visualizer:
+	image: dockersamples/visualizer:stable
+	ports:
+		- "8080:8080"
+	volumes:
+		- "/var/run/docker.sock:/var/run/docker.sock"
+	deploy:
+		mode: replicated
+		replicas: 1
+		labels: [APP=MONITOR]
+	placement:
+			constraints: [node.role == manager]
+
+networks:
+	$NETWORK_NAME
 
 EOM
 
