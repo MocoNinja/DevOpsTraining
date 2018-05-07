@@ -1,36 +1,21 @@
 version: '3'
 services:
- visualizer:
-  image: dockersamples/visualizer:stable
+ spring-guestbook-stack:
+  image: moconinja/spring-guestbook-test
   ports:
-   - 8000:8080
-  volumes:
-   - "/var/run/docker.sock:/var/run/docker.sock"
+   - 8080:8080
   deploy:
    mode: replicated
-   replicas: 1
-   labels: [APP=MONITOR]
+   replicas: 3
    placement:
-    constraints: [node.role == manager]
- registry:
-    image: registry:2
-    ports:
-      - 5000:5000
-    environment:
-      REGISTRY_HTTP_ADDR: 0.0.0.0:5000
-    volumes:
-      - "/home/centos/docker/persistence/registry:/var/lib/registry"
- portainer:
-  image: portainer/portainer
-  container_name: "manager"
-  ports:
-    - 9000:9000
+    constraints: [node.role == worker]
+ spring-mongo-stack:
+  image: mongo
   volumes:
-   - "/var/run/docker.sock:/var/run/docker.sock"
+   - /home/centos/docker/persistence/mongodb/spring-guestbook-stack:/data/db
   deploy:
    mode: replicated
    replicas: 1
-   labels: [APP=MANAGER]
    placement:
     constraints: [node.role == manager]
 networks:
