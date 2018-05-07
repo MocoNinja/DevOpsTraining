@@ -20,6 +20,19 @@ services:
       REGISTRY_HTTP_ADDR: 0.0.0.0:5000
     volumes:
       - "/home/centos/docker/persistence/registry:/var/lib/registry"
+ portainer:
+  image: portainer/portainer
+  container_name: "manager"
+  ports:
+    - 9000:9000
+  volumes:
+   - "/var/run/docker.sock:/var/run/docker.sock"
+  deploy:
+   mode: replicated
+   replicas: 1
+   labels: [APP=MANAGER]
+   placement:
+    constraints: [node.role == manager]
 networks:
  gestbook-net:
 
