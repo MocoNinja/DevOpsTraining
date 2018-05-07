@@ -37,11 +37,26 @@ services:
     constraints: [node.role == manager]
 
  prometheus:
-    image: prom/prometheus:master
+    image: moconinja/prometheus-moconinja
     ports:
-      - 9090:9090
-    volumes:
-      - /home/centos/docker/persistence/prometheus/:/etc/prometheus/
-      - /home/centos/docker/persistence/prometheus_data:/prometheus
+      - 8002:9090
+ grafana:
+  image: grafana/grafana
+  ports:
+    - 8003:3000
+  deploy:
+   mode: replicated
+   replicas: 1
+   labels: [APP=GRAFANA]
+   placement:
+    constraints: [node.role == manager]
+ nodes:
+   image: prom/node-exporter
+   ports:
+      - 9100:9100
+   deploy:
+      mode: global
+      placement:
+        constraints: [node.role == worker]
 networks:
   gestbook-net:
