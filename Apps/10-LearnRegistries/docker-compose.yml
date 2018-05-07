@@ -1,18 +1,18 @@
 version: '3'
 services:
-  registro:
-    restart: always
-    image: registry:2
-    ports:
-      - 5000:5000
-  visualizador:
-    image: dockersamples/visualizer:stable
-    ports:
-      - 8001:8080
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    deploy:
-      mode: replicated
-      replicas: 1
+ visualizer:
+  image: dockersamples/visualizer:stable
+  ports:
+   - 8000:8080
+  volumes:
+   - "/var/run/docker.sock:/var/run/docker.sock"
+  deploy:
+   mode: replicated
+   replicas: 1
+   labels: [APP=MONITOR]
+   placement:
+    constraints: [node.role == manager]
+
 networks:
-  guestbook-net:
+ gestbook-net:
+
