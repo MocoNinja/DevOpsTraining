@@ -1,8 +1,7 @@
 global:
-    scrape_interval: 5s
-    external_labels:
-        monitor: 'my-monitor'
+  scrape_interval:     15s
 scrape_configs:
-    - job_name: 'prometheus'
-      target_groups:
-        - targets: ['localhost:8003']
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
