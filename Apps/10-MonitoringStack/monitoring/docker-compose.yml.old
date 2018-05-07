@@ -1,6 +1,5 @@
 version: '3'
 services:
-
  visualizer:
   image: dockersamples/visualizer:stable
   ports:
@@ -13,7 +12,6 @@ services:
    labels: [APP=VISUALIZER]
    placement:
     constraints: [node.role == manager]
-
  registry:
     image: registry:2
     ports:
@@ -22,7 +20,6 @@ services:
       REGISTRY_HTTP_ADDR: 0.0.0.0:5000
     volumes:
       - "/home/centos/docker/persistence/registry:/var/lib/registry"
-
  portainer:
   image: portainer/portainer
   ports:
@@ -35,13 +32,25 @@ services:
    labels: [APP=MONITOR]
    placement:
     constraints: [node.role == manager]
-
  prometheus:
-    image: prom/prometheus:master
-    ports:
-      - 9090:9090
-    volumes:
-      - /home/centos/docker/persistence/prometheus/:/etc/prometheus/
-      - /home/centos/docker/persistence/prometheus_data:/prometheus
+  image: quay.io/prometheus/prometheus
+  ports:
+    - 8002:9000
+  deploy:
+   mode: replicated
+   replicas: 1
+   labels: [APP=PROMETHEUS]
+   placement:
+    constraints: [node.role == manager]
+ grafana:
+  image: grafana/grafana
+  ports:
+    - 8003:3000
+  deploy:
+   mode: replicated
+   replicas: 1
+   labels: [APP=GRAFANA]
+   placement:
+    constraints: [node.role == manager]
 networks:
   gestbook-net:
