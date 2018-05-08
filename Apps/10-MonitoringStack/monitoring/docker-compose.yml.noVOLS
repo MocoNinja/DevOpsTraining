@@ -37,13 +37,9 @@ services:
     constraints: [node.role == manager]
 
  prometheus:
-    image: prom/prometheus
+    image: moconinja/prometheus-moconinja
     ports:
       - 8002:9090
-    volumes:
-      - "/home/centos/docker/persistence/prometheus:/etc/prometheus"
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
     deploy:
       mode: replicated
       replicas: 1
