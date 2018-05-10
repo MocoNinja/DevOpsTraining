@@ -19,6 +19,7 @@ Inicialmente seguimos el [tutorial de Docker Swarm](https://docs.docker.com/engi
 * **Obtener los token para añadir otro nodo al swarm:**
   * *Para unir un **worker***: ```sudo docker swarm join-token worker```
   * *Para unir un **manager***: ```sudo docker swarm join-token manager```
+  	* **NOTAR** que para poder unir un nodo, es imperativo que la opci�n ```"live-restore``` estéa *true* en ```/etc/docker/daemon.json```
 * **Modificar el estado de un nodo:**: ```sudo docker node update --availability ESTADO NODO```
   * active: activo, el nodo se usa con regularidad
   * drain: inactivo, se especifica que los contenedores **del swarm** se muevan a otros nodos y no se alocan en él nuevos. Es interesante recalcar que si a un manager se le aplica esta opción, no ejecutará réplicas como otro worker
