@@ -1,7 +1,7 @@
 version: '3'
 
 services:
- prometheus:
+  prometheus:
     image: prom/prometheus
     ports:
       - 8002:9090
@@ -15,19 +15,39 @@ services:
       labels: [APP=PROMETHEUS]
       placement:
         constraints: [node.role == manager]
- grafana:
-  image: grafana/grafana
-  ports:
-    - 8003:3000
-  deploy:
-   mode: replicated
-   replicas: 1
-   labels: [APP=GRAFANA]
-   placement:
-    constraints: [node.role == manager]
- infonode:
-   image: prom/node-exporter
-   ports:
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 8003:3000
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=GRAFANA]
+      placement:
+        constraints: [node.role == manager]
+  infonode:
+    image: prom/node-exporter
+    ports:
       - 9100:9100
-   deploy:
+    deploy:
       mode: global
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+    environment: ['http.host=0.0.0.0', 'transport.host=127.0.0.1']
+    ports: ['127.0.0.1:9200:9200']
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=ELASTICSEARCH]
+      placement:
+        constraints: [node.role == manager]
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.2.4
+    ports: ['127.0.0.1:8004:5601']
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=KIBANA]
+      placement:
+        constraints: [node.role == manager]
+    depends_on: ['elasticsearch']
