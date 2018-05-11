@@ -1,0 +1,20 @@
+version: '3'
+services:
+ spring-guestbook-stack:
+  image: 192.168.2.18:5000/spring-app
+  ports:
+   - 8080:8080
+  deploy:
+   mode: replicated
+   replicas: 6
+   placement:
+    constraints: [node.role == worker]
+ spring-mongo-stack:
+  image: mongo
+  volumes:
+   - /home/centos/docker/persistence/mongodb/spring-guestbook-stack:/data/db
+  deploy:
+   mode: replicated
+   replicas: 2
+   placement:
+    constraints: [node.role == manager]
