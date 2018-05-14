@@ -8,7 +8,7 @@ services:
     networks:
       - registry
     volumes:
-      - /home/centos/docker/persistence/registry/:/var/lib/registry
+      - mahregistry:/var/lib/registry
     deploy:
       labels: [APP=REGISTRY]
       mode: replicated
@@ -35,7 +35,7 @@ services:
       - 8001:9000
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "/home/centos/docker/persistence/portainer/data/:/data portainer/portainer"
+      - "dataportainer:/data portainer/portainer"
 
     deploy:
       mode: replicated
@@ -46,3 +46,6 @@ services:
 
 networks:
   registry:
+volumes:
+  mahregistry:
+  dataportainer:
