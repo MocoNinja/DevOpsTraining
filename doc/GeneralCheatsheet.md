@@ -9,3 +9,8 @@
 ## Launch args
 
 * ***Delete container on stop***: ```--rm```
+
+## Attaching and detaching
+
+* **Attach to a container with a name or id of *name***: ```sudo docker attach name```
+* **Detach from it without stopping**: ```CRTL+P CRTL+Q```
