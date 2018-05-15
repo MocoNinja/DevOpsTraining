@@ -59,40 +59,5 @@ services:
       mode: global
       placement:
         constraints: [node.role == worker]
- fluentd:
-  image: fluent/fluentd
-  ports:
-    - 24224:24224
-    - 24224:24224/udp
-  volumes:
-    - "/home/centos/docker/persistence/fluentd/:/fluentd/log"
-  deploy:
-   mode: replicated
-   replicas: 1
-   labels: [APP=FLUENTD]
-   placement:
-    constraints: [node.role == manager]
- elas:
-  image: elasticsearch
-  ports: 
-    - 9200:9200
-  deploy:
-   mode: replicated
-   replicas: 1
-   labels: [APP=ELASTIC]
-   placement:
-    constraints: [node.role == manager]
- kibana:
-  image: kibana
-  ports:
-    - 9007:5601
-  environment:
-    - 'ELASTICSEARCH_URL=http://localhost:9200'
-  deploy:
-   mode: replicated
-   replicas: 1
-   labels: [APP=kibana]
-   placement:
-    constraints: [node.role == manager]
 networks:
   gestbook-net:
