@@ -1,0 +1,9 @@
+{"container_id":"e3d7f50f64a89378a7ac145d155aa17a7aec574e8492885460b647bc3e97be2a","container_name":"/LOG_vizualizer.1.q5tfgo0kkh1x9xrql1vdm1jw3","source":"stderr","log":"npm info it worked if it ends with ok"}
+{"container_name":"/LOG_vizualizer.1.q5tfgo0kkh1x9xrql1vdm1jw3","source":"stderr","log":"npm info using npm@5.3.0","container_id":"e3d7f50f64a89378a7ac145d155aa17a7aec574e8492885460b647bc3e97be2a"}
+{"source":"stderr","log":"npm info using node@v8.2.1","container_id":"e3d7f50f64a89378a7ac145d155aa17a7aec574e8492885460b647bc3e97be2a","container_name":"/LOG_vizualizer.1.q5tfgo0kkh1x9xrql1vdm1jw3"}
+{"container_id":"e3d7f50f64a89378a7ac145d155aa17a7aec574e8492885460b647bc3e97be2a","container_name":"/LOG_vizualizer.1.q5tfgo0kkh1x9xrql1vdm1jw3","source":"stderr","log":"npm info lifecycle swarmVisualizer@0.0.1~prestart: swarmVisualizer@0.0.1"}
+{"log":"npm info lifecycle swarmVisualizer@0.0.1~start: swarmVisualizer@0.0.1","container_id":"e3d7f50f64a89378a7ac145d155aa17a7aec574e8492885460b647bc3e97be2a","container_name":"/LOG_vizualizer.1.q5tfgo0kkh1x9xrql1vdm1jw3","source":"stderr"}
+{"container_name":"/LOG_vizualizer.1.q5tfgo0kkh1x9xrql1vdm1jw3","source":"stdout","log":"","container_id":"e3d7f50f64a89378a7ac145d155aa17a7aec574e8492885460b647bc3e97be2a"}
+{"source":"stdout","log":"> swarmVisualizer@0.0.1 start /app","container_id":"e3d7f50f64a89378a7ac145d155aa17a7aec574e8492885460b647bc3e97be2a","container_name":"/LOG_vizualizer.1.q5tfgo0kkh1x9xrql1vdm1jw3"}
+{"log":"> node server.js","container_id":"e3d7f50f64a89378a7ac145d155aa17a7aec574e8492885460b647bc3e97be2a","container_name":"/LOG_vizualizer.1.q5tfgo0kkh1x9xrql1vdm1jw3","source":"stdout"}
+{"source":"stdout","log":"","container_id":"e3d7f50f64a89378a7ac145d155aa17a7aec574e8492885460b647bc3e97be2a","container_name":"/LOG_vizualizer.1.q5tfgo0kkh1x9xrql1vdm1jw3"}
