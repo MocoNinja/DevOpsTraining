@@ -4,3 +4,17 @@ groups:
   - alert: AlgunoDead
     expr: sum(up{job="node"}) < 4
     for: 1m
+    annotations:
+      summary: "La instancia {{ $labels.instance }} ha ripado!"
+      description: "{{ $labels.instance }} lleva 1 minuto sin responder!"
+    labels:
+      severity: hardcore
+
+  - alert: VariosDead
+    expr: sum(up{job="node"}) < 3
+    for: 1m
+    annotations:
+      summary: "La instancia {{ $labels.instance }} ha ripado!"
+      description: "{{ $labels.instance }} lleva 1 minuto sin responder!"
+    labels:
+      severity: veryHardcore
