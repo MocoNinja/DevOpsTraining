@@ -1,2 +1,0 @@
-{"source":"stdout","log":"10.255.0.4 - - [15/May/2018:12:48:57 +0000] \"GET / HTTP/1.1\" 200 490 \"-\" \"curl/7.29.0\"","container_id":"2a1526e68d33747d83bad1fcfde99a4c89669d4aed03262d4c72b20faeacaa55","container_name":"/LOG_whoami.1.zl74svrwdp2rf7nrxcctzkaiy"}
-{"container_id":"2a1526e68d33747d83bad1fcfde99a4c89669d4aed03262d4c72b20faeacaa55","container_name":"/LOG_whoami.1.zl74svrwdp2rf7nrxcctzkaiy","source":"stdout","log":"10.255.0.4 - - [15/May/2018:12:49:03 +0000] \"GET / HTTP/1.1\" 200 490 \"-\" \"curl/7.29.0\""}
