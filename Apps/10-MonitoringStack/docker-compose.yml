@@ -13,6 +13,8 @@ services:
    labels: [APP=VISUALIZER]
    placement:
     constraints: [node.role == manager]
+  networks:
+    - "admin-net"
 
  portainer:
   image: portainer/portainer
@@ -26,13 +28,15 @@ services:
    labels: [APP=PORTAINER]
    placement:
     constraints: [node.role == manager]
+  networks:
+    - "admin-net"
 
  prometheus:
     image: prom/prometheus
     ports:
       - 8002:9090
     volumes:
-      - "./prometheus:/etc/prometheus"
+      - "./confs:/etc/prometheus"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     deploy:
@@ -41,6 +45,9 @@ services:
       labels: [APP=PROMETHEUS]
       placement:
         constraints: [node.role == manager]
+    networks:
+      - "admin-net"
+
  grafana:
   image: grafana/grafana
   ports:
@@ -51,6 +58,9 @@ services:
    labels: [APP=GRAFANA]
    placement:
     constraints: [node.role == manager]
+  networks:
+    - "admin-net"
+
  nodes:
    image: prom/node-exporter
    ports:
@@ -59,5 +69,9 @@ services:
       mode: global
       placement:
         constraints: [node.role == worker]
+   networks:
+    - "admin-net"
+
 networks:
-  gestbook-net:
+  "admin-net":
+    external: true
