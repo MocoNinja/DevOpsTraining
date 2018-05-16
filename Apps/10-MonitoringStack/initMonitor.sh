@@ -1,2 +1,2 @@
 #! /bin/bash
-sudo docker stack deploy --compose-file docker-compose.yml MONITOR
+sudo docker stack deploy --compose-file monitoringStack.yml MONITOR
