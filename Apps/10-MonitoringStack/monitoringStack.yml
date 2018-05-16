@@ -36,13 +36,26 @@ services:
     ports:
       - 8002:9090
     volumes:
-      - "./confs:/etc/prometheus"
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+      - "./confs/prometheus:/etc/prometheus"
     deploy:
       mode: replicated
       replicas: 1
       labels: [APP=PROMETHEUS]
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - "admin-net"
+
+ alertmanager:
+    image: prom/alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - "./confs/alertmanager:/etc/alertmanager"
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=ALERTMANAGER]
       placement:
         constraints: [node.role == manager]
     networks:
