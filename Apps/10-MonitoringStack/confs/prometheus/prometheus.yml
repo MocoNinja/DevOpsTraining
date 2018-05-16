@@ -3,6 +3,7 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['192.168.2.14:9100', '192.168.2.15:9100', '192.168.2.13:9100', '192.168.2.18:9100']
+
 alerting:
   alertmanagers:
   - scheme: http
@@ -10,3 +11,5 @@ alerting:
     - targets:
       - "MONITOR_alertmanager:9093"
 
+rule_files:
+  - 'alert.rules'

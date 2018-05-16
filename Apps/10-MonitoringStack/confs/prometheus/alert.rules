@@ -1,0 +1,6 @@
+groups:
+- name: nodos
+  rules:
+  - alert: AlgunoDead
+    expr: sum(up{job="node"}) < 4
+    for: 1m
