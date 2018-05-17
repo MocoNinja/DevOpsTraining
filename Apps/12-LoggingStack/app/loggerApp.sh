@@ -2,7 +2,7 @@
 
 i=$((i+1))
 
-while [ $i -lt 10000 ]; do
+while [ $i -lt 100 ]; do
 echo "HELLO, FRIEND" 
 i=$((i+1))
 echo "I AM $(ifconfig | grep inet)"
