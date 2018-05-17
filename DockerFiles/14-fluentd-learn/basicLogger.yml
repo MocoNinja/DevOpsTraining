@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+
+  fluentd:
+    image: 192.168.2.18:5000/fluentd-custom:v1
+    networks:
+      - fluentd-net
+    volumes:
+      - "./logs/:/fluentd/log/"
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [ node.role == manager ]
+
+  
+  loggerApp:
+    image: 192.168.2.18:5000/logger:v1
+    networks:
+      - fluentd-net
+    logging:
+      driver: "fluentd"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [ node.role == manager ]
+
+networks:
+  fluentd-net:
