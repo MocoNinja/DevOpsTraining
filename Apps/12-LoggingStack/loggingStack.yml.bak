@@ -17,6 +17,19 @@ services:
       placement:
         constraints: [ node.role == manager ]
 
+  
+  loggerApp:
+    image: 192.168.2.18:5000/logger:v1
+    networks:
+      - admin-net
+    logging:
+      driver: "fluentd"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [ node.role == worker ]
+
   elasticsearch:
     image: elasticsearch
     ports:
