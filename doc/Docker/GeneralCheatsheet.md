@@ -14,3 +14,11 @@
 
 * **Attach to a container with a name or id of *name***: ```sudo docker attach name```
 * **Detach from it without stopping**: ```CRTL+P CRTL+Q```
+
+## Useful snippets
+
+### Remove all exited containers
+
+```shell
+    sudo docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs sudo docker rm
+```
