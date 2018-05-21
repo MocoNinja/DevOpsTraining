@@ -1,0 +1,19 @@
+global:
+  smtp_smarthost: 'localhost:25'
+  smtp_from: 'root@localhost'
+  smtp_auth_username: 'root'
+  smtp_auth_password: ''
+
+route:
+  group_by: ['alertname']
+  receiver: gmail
+
+receivers:
+  - name: gmail
+    email_configs:
+    - to: cfalsa591@gmail.com
+      from: cfalsa591@gmail.com
+      smarthost: smtp.gmail.com:587
+      auth_username: "cfalsa591@gmail.com"
+      auth_identity: "cfalsa591@gmail.com"
+      auth_password: "__cfalsa591__"
