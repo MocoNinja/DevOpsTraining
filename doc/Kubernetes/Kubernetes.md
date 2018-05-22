@@ -12,6 +12,17 @@ Cuando usábamos *Docker*, ejecutábamos las órdenes a través de su demonio. E
 
 Los contendores orquestados se distribuyen a lo largo de un clúster, de forma similar a lo visto con Docker Swarm. De la misma manera, se sigue una [arquitectura](https://github.com/kubernetes/kubernetes/blob/release-1.2/docs/design/architecture.md)  *maestro-esclavo*, existiendo máquinas que actuarán como **managers** y otras que actuarán como **workers** (en Kubernetes, tradicionalmente denominadas *minions*, aunque actualmente se prefiere el término *nodo*).
 
+### Conceptos básicos
+
+Es importante conocer en general los siguientes conceptos, pues son los fundamentales de Kubernetes:
+
+* ***Kubernetes Master***: Es el elemento del clúster que actúa como tal, teniendo los servicios de gestión que describiremos posteriormente
+* ***Nodos***: Son los elementos del clúster que actúan como *workers*
+* ***Pods***: Son un conjunto de contenedores y volumes que comparten el mismo *namespace* de red y se pueden comunicar mediante el uso de *localhost*. Se planifican en *Nodos*. **Son efímeros**
+* ***Etiquetas***: Es una dupla clave-valor que se asigna a un *Pod* y permite la comunicación de atributos definidos por el usuario.
+* ***Servicios***: Son una forma de abstraer *Pods*, encargádose de su definición y políticas de acceso. Los servicios encuentran a los pods mediante *Etiquetas* y a través de servicios de proxy y dns, permiten su fácil acceso a través de una IP fija a pesar de nu naturaleza efímera.
+* ***Controladores de replicación***: Son los encargados de mantener el estado deseado del cúster, gestionando el número de Pods y monitoreándolos.
+
 ### Elmentos de control
 
 Como se ha mencionado antes, los *nodos **físicos*** que componen el clúster de Kubernetes, pueden actúar como administradores o como trabajadores. Según estas funciones, presentan diferentes características:
