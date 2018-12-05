@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: javi
+  labels:
+    custom.name: 'moconinjas.namespace'
+    cutsom.scope: 'k8s.learning'
+  annotations:
+    nombre.largo: 'mi_propio_namespace_para_kubernetes'
