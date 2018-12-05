@@ -4,7 +4,7 @@
 
 En primera instancia se va a crear un clúster mononodo para poder empezar la parte práctica del aprendizaje.
 
-Las guías principales a seguir son estas que inidican (cómo instalar *kubeadm*)[https://kubernetes.io/docs/setup/independent/install-kubeadm/] y (cómo instalar el *clúster*)[https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/].
+Las guías principales a seguir son estas que inidican [cómo instalar *kubeadm*[(https://kubernetes.io/docs/setup/independent/install-kubeadm/) y [cómo instalar el *clúster*[(https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/).
 
 Se han seguido en un Centos7 y se ha podido instalar sin problema el clúster, usando ***Flannel*** como *add-on de red*.
 
