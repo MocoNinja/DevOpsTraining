@@ -6,6 +6,10 @@ En primera instancia se va a crear un clúster mononodo para poder empezar la pa
 
 Las guías principales a seguir son estas que inidican [cómo instalar *kubeadm*](https://kubernetes.io/docs/setup/independent/install-kubeadm/) y [cómo instalar el *clúster*](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/).
 
+En resumen, para instalar el clúster de kubernetes usando como driver *flannel*, se debe usar el comando:
+
+```--pod-network-cidr=10.244.0.0/16```
+
 Para desinstalarlo los comandos a utilizar son:
 
 * ```sudo kubeadm reset```
