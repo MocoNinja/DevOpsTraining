@@ -1,10 +1,15 @@
-# Kubernetes Learning
+kubec# Kubernetes Learning
 
 ## Instalación
 
 En primera instancia se va a crear un clúster mononodo para poder empezar la parte práctica del aprendizaje.
 
 Las guías principales a seguir son estas que inidican [cómo instalar *kubeadm*](https://kubernetes.io/docs/setup/independent/install-kubeadm/) y [cómo instalar el *clúster*](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/).
+
+Para desinstalarlo los comandos a utilizar son:
+
+* ```sudo kubeadm reset```
+* ```sudo rm -rf ~/.kube```
 
 Se han seguido en un Centos7 y se ha podido instalar sin problema el clúster, usando ***Flannel*** como *add-on de red*.
 
@@ -25,7 +30,7 @@ Sus caracterísicas identificativas son:
 * nombre: Es un *string* especificado por el cliente. Hace referencia a un **recurso URL**, por ejemplo ```/api/v1/pods/my-name```. El nombre puede estar asignado únicamente a un objeto en un instante y por convenio los nombres deben obedecer el siguiente formato:
   * 253 como máximo de longitud
   * Tener como carácteres *minúsculas*, *-* o *.*
-* uid:	Es un *string* generado por *Kubernetes*. Es único en todo el periodo de vida del clúster.
+* uid: Es un *string* generado por *Kubernetes*. Es único en todo el periodo de vida del clúster.
 
 ### Namespaces
 
@@ -100,6 +105,28 @@ Hay que notar que tampoco estos objetos están pensados para ser gestionados dir
 
 Como se ha dicho antes, un **deployment** es la descripción declarativa del **estado deseado del despliegue**. Se describel el estado deseado y el **controlador** es el que **cambia el estado actual para adecuarlo en un intervalo controlado**. No hay que tocar manualmente los Replica Sets, sino ir modificando el deployment según las necesidades.
 
+#### Services
+
+Los servicios son una capa que puede entenderse como la abstracción de la conectividad entre recursos, generalmente **pods**.
+
+Al ser estos efímeros, no puede garantizarse que no cambien. Y a las aplicaciones realmente no les afecta que cambie el pod, sólo es necesario que se pueda seguir accediendo de forma reproducible a la funcionalidad que otorga dicho pod.
+
+Para definir un servicio se especifica:
+
+* El **puerto**: en el yaml, bajo la etiqueta *ports*, se puede especificar el protocolo, el puerto del pod (**targetPort**) y el puerto de la aplicación (**port**). Si no se especifica lo contrario, *targetPort* por defecto usa el valor de *port*. *targetPort* puede indicarse con un **nombre** en vez del número de puerto
+* El **selector**: en el yaml, bajo la etiqueta *selector* puede indicarse el nombre de la **etiqueta** de los pods objetivo del servicio.
+  * **No se usa siempre**. Aunque menos común, los servicios pueden abstraer recursos distintos a pods:
+    * Apuntar a un servicio en otro *namespace* o *cluster*
+    * Usar algún *backend* que no está en Kubernetes
+    * Tener distintos *backends* para distintos entornos (como usar una base de datos local en desarrollo y una externa en producción)
+  * Al **no tener selector**, no se crea automáticamente el objeto **Endpoint** del servicio
+  * Es por ello necesario especificar **manualmente el mapeo**:
+    * Se crea en el yaml el objeto ```subsets```
+    * Se crea dentro el objeto ```addresses```, conteniendo las ```ip```
+    * Se crea dentro el objeto ```ports```, conteniendo las ```port```
+
+El encargado de hacer la "magia" de esto es el **kube-proxy**. Este componente está en cada nodo y es el encargado de mirar los Servicios y Endpoints creados / actualizados
+
 ## TutoEjemplos
 
 ### Crear mi propio namespace
@@ -114,3 +141,7 @@ Como se ha dicho antes, un **deployment** es la descripción declarativa del **e
     > ```kubectl apply -f ./resources/javi-ns.yml```
 2. Podemos ver las label mediante el comando:
     > ```kubectl get namespaces --show-labels```
+
+### Crear el proxy para poder acceder desde el exterior
+
+```kubectl proxy --address='0.0.0.0' --port=8002 --accept-hosts='.*'```
