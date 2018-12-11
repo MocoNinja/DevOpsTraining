@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: logger-pod
+spec:
+  containers:
+  - image: moconinja/simplelogger
+    name: log-app
+    volumeMounts:
+      - mountPath: /logs
+        name: local-hdd
+  volumes:
+  - name: local-hdd
+    hostPath:
+      path: /home/centos/k8s/hdd
+      type: Directory

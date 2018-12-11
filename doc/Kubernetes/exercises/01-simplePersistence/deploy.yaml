@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplelogger-localstorage
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: logger
+  template:
+    metadata:
+      labels:
+        app: logger
+    spec:
+      containers:
+      - name: logger
+        image: moconinja/simplelogger
+        volumeMounts:
+        - name: local-storage
+          mountPath: /logs
+      volumes:
+      - name: local-storage
+        hostPath:
+          path: /home/centos/k8s/hdd
+          type: Directory
