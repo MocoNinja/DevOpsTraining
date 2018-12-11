@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: simplelogger-nfsstorage
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: logger
