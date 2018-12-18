@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: app-ingress
+spec:
+  rules:
+  - host: javi.ja
+    http:
+      paths:
+      - backend:
+          serviceName: mah-webpage-ingress
+          servicePort: 80
+        path: /app1
